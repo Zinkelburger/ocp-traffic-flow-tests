@@ -108,7 +108,12 @@ class ValidateOffload(Task):
             rx_packet_end = self._output_ethtool.result["rx_end"]
             tx_packet_end = self._output_ethtool.result["tx_end"]
 
-            logger.info("rx_packet_start: %d\n tx_packet_start: %d\n rx_packet_end: %d\n tx_packet_end: %d\n" % (rx_packet_start,tx_packet_start,rx_packet_end,tx_packet_end))
+            logger.info(
+                f"rx_packet_start: {rx_packet_start}\n"
+                f"tx_packet_start: {tx_packet_start}\n"
+                f"rx_packet_end: {rx_packet_end}\n"
+                f"tx_packet_end: {tx_packet_end}\n"
+            )
 
     def generate_output_ethtool(self, data, cmd: str) -> PluginOutput:
         return PluginOutput(
