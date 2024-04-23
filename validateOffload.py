@@ -44,8 +44,8 @@ class ValidateOffload(Task):
 
     def extract_vf_rep(self) -> str:
         if self.iperf_pod_type == PodType.HOSTBACKED:
-            logger.info(f"The VF representor is: ovn-k8s-mp0_0")
-            return "ovn-k8s-mp0_0"
+            logger.info(f"The VF representor is: ovn-k8s-mp0")
+            return "ovn-k8s-mp0"
 
         self.get_vf_rep_cmd = f'exec -n default {self.pod_name} -- /bin/sh -c "crictl --runtime-endpoint=/host/run/crio/crio.sock ps -a --name={self.iperf_pod_name} -o json "'
         r = self.run_oc(self.get_vf_rep_cmd)
@@ -119,9 +119,9 @@ class ValidateOffload(Task):
 
         if self.iperf_pod_type == PodType.HOSTBACKED:
             if isinstance(self._iperf_instance, IperfClient):
-                logger.info(f"The client VF representor ovn-k8s-mp0_0 does not exist")
+                logger.info(f"The client VF representor ovn-k8s-mp0 does not exist")
             else:
-                logger.info(f"The server VF representor ovn-k8s-mp0_0 does not exist")
+                logger.info(f"The server VF representor ovn-k8s-mp0 does not exist")
         else:
             # Print summary to console logs
             rx_packet_start = self._output_ethtool.result["rx_start"]
